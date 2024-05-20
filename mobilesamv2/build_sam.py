@@ -10,10 +10,10 @@ import torch.nn as nn
 from functools import partial
 
 from .modeling import ImageEncoderViT, MaskDecoder, PromptEncoder, Sam, TwoWayTransformer
-from tinyvit.tiny_vit import TinyViT#11000 
-from efficientvit.models.efficientvit.backbone import EfficientViTLargeBackbone
-from efficientvit.models.efficientvit.sam import SamNeck, EfficientViTSamImageEncoder
-from efficientvit.models.nn.norm import set_norm_eps
+from .tinyvit.tiny_vit import TinyViT#11000 
+from .efficientvit.models.efficientvit.backbone import EfficientViTLargeBackbone
+from .efficientvit.models.efficientvit.sam import SamNeck, EfficientViTSamImageEncoder
+from .efficientvit.models.nn.norm import set_norm_eps
 
 def build_sam_vit_h(checkpoint=None):
     return _build_sam(

@@ -24,7 +24,7 @@ def parse_args():
     parser.add_argument("--encoder_type", choices=['tiny_vit','sam_vit_h','mobile_sam','efficientvit_l2','efficientvit_l1','efficientvit_l0'], help="choose the model type")
     return parser.parse_args()
 def create_model():
-    Prompt_guided_path='./PromptGuidedDecoder/Prompt_guided_Mask_Decoder.pt'
+    Prompt_guided_path='./submodules/MobileSAMV2/PromptGuidedDecoder/Prompt_guided_Mask_Decoder.pt'
     obj_model_path='/data/pretrained_weights/mobilesamv2/ObjectAwareModel.pt'
     ObjAwareModel = ObjectAwareModel(obj_model_path)
     PromptGuidedDecoder=sam_model_registry['PromptGuidedDecoder'](Prompt_guided_path)
