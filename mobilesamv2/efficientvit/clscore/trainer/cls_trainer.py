@@ -36,7 +36,7 @@ class ClsTrainer(Trainer):
         self.auto_restart_thresh = auto_restart_thresh
         self.test_criterion = nn.CrossEntropyLoss()
 
-    def _validate(self, model, data_loader, epoch) -> dict[str, any]:
+    def _validate(self, model, data_loader, epoch):
         val_loss = AverageMeter()
         val_top1 = AverageMeter()
         val_top5 = AverageMeter()
@@ -78,7 +78,7 @@ class ClsTrainer(Trainer):
             **({"val_top5": val_top5.avg} if val_top5.count > 0 else {}),
         }
 
-    def before_step(self, feed_dict: dict[str, any]) -> dict[str, any]:
+    def before_step(self, feed_dict):
         images = feed_dict["data"].cuda()
         labels = feed_dict["label"].cuda()
 
@@ -108,7 +108,7 @@ class ClsTrainer(Trainer):
             "label": labels,
         }
 
-    def run_step(self, feed_dict: dict[str, any]) -> dict[str, any]:
+    def run_step(self, feed_dict):
         images = feed_dict["data"]
         labels = feed_dict["label"]
 
@@ -142,7 +142,7 @@ class ClsTrainer(Trainer):
             "top1": top1,
         }
 
-    def _train_one_epoch(self, epoch: int) -> dict[str, any]:
+    def _train_one_epoch(self, epoch: int):
         train_loss = AverageMeter()
         train_top1 = AverageMeter()
 

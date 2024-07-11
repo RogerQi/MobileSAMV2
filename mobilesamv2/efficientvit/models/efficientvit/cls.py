@@ -27,7 +27,7 @@ class ClsHead(OpSequential):
     def __init__(
         self,
         in_channels: int,
-        width_list: list[int],
+        width_list,
         n_classes=1000,
         dropout=0.0,
         norm="bn2d",
@@ -44,7 +44,7 @@ class ClsHead(OpSequential):
 
         self.fid = fid
 
-    def forward(self, feed_dict: dict[str, torch.Tensor]) -> torch.Tensor:
+    def forward(self, feed_dict) -> torch.Tensor:
         x = feed_dict[self.fid]
         return OpSequential.forward(self, x)
 

@@ -64,7 +64,7 @@ class ImageNetDataProvider(DataProvider):
             drop_last,
         )
 
-    def build_valid_transform(self, image_size: tuple[int, int] or None = None) -> any:
+    def build_valid_transform(self, image_size = None) -> any:
         image_size = (image_size or self.active_image_size)[0]
         crop_size = int(math.ceil(image_size / self.rrc_config["test_crop_ratio"]))
         return transforms.Compose(
@@ -79,7 +79,7 @@ class ImageNetDataProvider(DataProvider):
             ]
         )
 
-    def build_train_transform(self, image_size: tuple[int, int] or None = None) -> any:
+    def build_train_transform(self, image_size = None) -> any:
         image_size = image_size or self.image_size
 
         # random_resize_crop -> random_horizontal_flip

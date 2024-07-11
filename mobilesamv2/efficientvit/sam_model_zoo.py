@@ -14,7 +14,7 @@ from mobilesamv2.efficientvit.models.utils import load_state_dict_from_file
 __all__ = ["create_sam_model"]
 
 
-REGISTERED_SAM_MODEL: dict[str, str] = {
+REGISTERED_SAM_MODEL = {
     "l0": "assets/checkpoints/sam/l0.pt",
     "l1": "assets/checkpoints/sam/l1.pt",
     "l2": "assets/checkpoints/sam/l2.pt",

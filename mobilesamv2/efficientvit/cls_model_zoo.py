@@ -18,7 +18,7 @@ from mobilesamv2.efficientvit.models.utils import load_state_dict_from_file
 __all__ = ["create_cls_model"]
 
 
-REGISTERED_CLS_MODEL: dict[str, str] = {
+REGISTERED_CLS_MODEL = {
     "b0-r224": "assets/checkpoints/cls/b0-r224.pt",
     ###############################################
     "b1-r224": "assets/checkpoints/cls/b1-r224.pt",

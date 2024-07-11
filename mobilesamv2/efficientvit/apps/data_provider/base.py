@@ -14,7 +14,7 @@ from mobilesamv2.efficientvit.models.utils import val2tuple
 __all__ = ["parse_image_size", "random_drop_data", "DataProvider"]
 
 
-def parse_image_size(size: int or str) -> tuple[int, int]:
+def parse_image_size(size: int or str):
     if isinstance(size, str):
         size = [int(val) for val in size.split("-")]
         return size[0], size[1]
@@ -101,16 +101,16 @@ class DataProvider:
         self.sub_train = None
 
     @property
-    def data_shape(self) -> tuple[int, ...]:
+    def data_shape(self):
         return 3, self.active_image_size[0], self.active_image_size[1]
 
-    def build_valid_transform(self, image_size: tuple[int, int] or None = None) -> any:
+    def build_valid_transform(self, image_size = None) -> any:
         raise NotImplementedError
 
-    def build_train_transform(self, image_size: tuple[int, int] or None = None) -> any:
+    def build_train_transform(self, image_size = None) -> any:
         raise NotImplementedError
 
-    def build_datasets(self) -> tuple[any, any, any]:
+    def build_datasets(self):
         raise NotImplementedError
 
     def build_dataloader(self, dataset: any or None, batch_size: int, n_worker: int, drop_last: bool, train: bool):
@@ -153,7 +153,7 @@ class DataProvider:
         # change the transform of the valid and test set
         self.valid.dataset.transform = self.test.dataset.transform = new_transform
 
-    def sample_val_dataset(self, train_dataset, valid_transform) -> tuple[any, any]:
+    def sample_val_dataset(self, train_dataset, valid_transform):
         if self.valid_size is not None:
             if 0 < self.valid_size < 1:
                 valid_size = int(self.valid_size * len(train_dataset))

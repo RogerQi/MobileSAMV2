@@ -160,10 +160,10 @@ class Trainer:
             progress_bar=progress_bar,
         )
 
-    def _validate(self, model, data_loader, epoch) -> dict[str, any]:
+    def _validate(self, model, data_loader, epoch):
         raise NotImplementedError
 
-    def validate(self, model=None, data_loader=None, is_test=True, epoch=0) -> dict[str, any]:
+    def validate(self, model=None, data_loader=None, is_test=True, epoch=0):
         model = model or self.eval_network
         if data_loader is None:
             if is_test:
@@ -181,7 +181,7 @@ class Trainer:
         is_test=True,
         epoch=0,
         eval_image_size=None,
-    ) -> dict[str, dict[str, any]]:
+    ):
         eval_image_size = eval_image_size or self.run_config.eval_image_size
         eval_image_size = eval_image_size or self.data_provider.image_size
         model = model or self.eval_network
@@ -247,13 +247,13 @@ class Trainer:
         if "scaler" in checkpoint and self.fp16:
             self.scaler.load_state_dict(checkpoint["scaler"])
 
-    def before_step(self, feed_dict: dict[str, any]) -> dict[str, any]:
+    def before_step(self, feed_dict):
         for key in feed_dict:
             if isinstance(feed_dict[key], torch.Tensor):
                 feed_dict[key] = feed_dict[key].cuda()
         return feed_dict
 
-    def run_step(self, feed_dict: dict[str, any]) -> dict[str, any]:
+    def run_step(self, feed_dict):
         raise NotImplementedError
 
     def after_step(self) -> None:
@@ -271,10 +271,10 @@ class Trainer:
         if self.ema is not None:
             self.ema.step(self.network, self.run_config.global_step)
 
-    def _train_one_epoch(self, epoch: int) -> dict[str, any]:
+    def _train_one_epoch(self, epoch: int):
         raise NotImplementedError
 
-    def train_one_epoch(self, epoch: int) -> dict[str, any]:
+    def train_one_epoch(self, epoch: int):
         self.model.train()
 
         self.data_provider.set_epoch(epoch)

@@ -11,7 +11,7 @@ from mobilesamv2.efficientvit.models.utils.list import list_mean, list_sum
 __all__ = ["sync_tensor"]
 
 
-def sync_tensor(tensor: torch.Tensor or float, reduce="mean") -> torch.Tensor or list[torch.Tensor]:
+def sync_tensor(tensor: torch.Tensor or float, reduce="mean"):
     if not isinstance(tensor, torch.Tensor):
         tensor = torch.Tensor(1).fill_(tensor).cuda()
     tensor_list = [torch.empty_like(tensor) for _ in range(distributed.size())]

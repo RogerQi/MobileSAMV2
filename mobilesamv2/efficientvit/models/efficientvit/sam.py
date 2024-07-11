@@ -72,7 +72,7 @@ class SamResize:
         return np.array(resize(to_pil_image(image), target_size))
 
     @staticmethod
-    def get_preprocess_shape(oldh: int, oldw: int, long_side_length: int) -> tuple[int, int]:
+    def get_preprocess_shape(oldh: int, oldw: int, long_side_length: int):
         """
         Compute the output size given input size and target long side length.
         """
@@ -89,8 +89,8 @@ class SamResize:
 class SamNeck(DAGBlock):
     def __init__(
         self,
-        fid_list: list[str],
-        in_channel_list: list[int],
+        fid_list,
+        in_channel_list,
         head_width: int,
         head_depth: int,
         expand_ratio: float,

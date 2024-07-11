@@ -24,7 +24,7 @@ class RRSController:
     CHOICE_LIST = None
 
     @staticmethod
-    def get_candidates() -> list[tuple[int, int]]:
+    def get_candidates():
         return copy.deepcopy(RRSController.IMAGE_SIZE_LIST)
 
     @staticmethod

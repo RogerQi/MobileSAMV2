@@ -21,7 +21,7 @@ class LayerNorm2d(nn.LayerNorm):
 
 
 # register normalization function here
-REGISTERED_NORM_DICT: dict[str, type] = {
+REGISTERED_NORM_DICT = {
     "bn2d": nn.BatchNorm2d,
     "ln": nn.LayerNorm,
     "ln2d": LayerNorm2d,

@@ -32,9 +32,9 @@ __all__ = [
 class SegHead(DAGBlock):
     def __init__(
         self,
-        fid_list: list[str],
-        in_channel_list: list[int],
-        stride_list: list[int],
+        fid_list,
+        in_channel_list,
+        stride_list,
         head_stride: int,
         head_width: int,
         head_depth: int,

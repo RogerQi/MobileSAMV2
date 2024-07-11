@@ -12,7 +12,7 @@ __all__ = ["build_act"]
 
 
 # register activation function here
-REGISTERED_ACT_DICT: dict[str, type] = {
+REGISTERED_ACT_DICT = {
     "relu": nn.ReLU,
     "relu6": nn.ReLU6,
     "hswish": nn.Hardswish,
