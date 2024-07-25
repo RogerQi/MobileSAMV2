@@ -1,12 +1,8 @@
 import argparse
-import ast
 import torch
 from PIL import Image
 import cv2
 import os
-import sys
-from mobilesamv2.promt_mobilesamv2 import ObjectAwareModel
-from mobilesamv2 import sam_model_registry, SamPredictor
 from typing import Any, Dict, Generator,List
 import matplotlib.pyplot as plt
 import numpy as np
@@ -54,8 +50,6 @@ def main(args):
         print(image_name)
         image = cv2.imread(args.img_path + image_name)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        for _ in range(5):
-            obj_results = ObjAwareModel(image,device=device,retina_masks=args.retina,imgsz=args.imgsz,conf=args.conf,iou=args.iou)
         start_cp = time.time()
         obj_results = ObjAwareModel(image,device=device,retina_masks=args.retina,imgsz=args.imgsz,conf=args.conf,iou=args.iou)
         torch.cuda.synchronize()
@@ -98,7 +92,7 @@ def main(args):
         sorted_indices = torch.argsort(areas, descending=True)
         show_img = annotation[sorted_indices]
         show_img = show_anns(show_img)
-        Image.fromarray((show_img * 255).astype(np.uint8)).save(output_dir+image_name)
+        Image.fromarray((show_img * 255).astype(np.uint8)).save(output_dir+image_name.replace('.jpg','_mask.png'))
 
 if __name__ == "__main__":
     args = parse_args()
