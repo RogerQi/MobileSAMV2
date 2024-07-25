@@ -62,7 +62,7 @@ def _get_mobilesamv2(encoder_type):
     mobilesamv2 = sam_model_registry['vit_h']()
     mobilesamv2.prompt_encoder = PromptGuidedDecoder['PromtEncoder']
     mobilesamv2.mask_decoder = PromptGuidedDecoder['MaskDecoder']
-    image_encoder=sam_model_registry[encoder_type](encoder_path[encoder_type])
+    image_encoder = sam_model_registry[encoder_type](encoder_path)
     mobilesamv2.image_encoder = image_encoder
     mobilesamv2.eval()
 
