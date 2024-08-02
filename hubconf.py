@@ -33,7 +33,8 @@ def _get_object_aware_model():
     repo_dir = _get_my_repo_dir()
     assert os.path.exists(repo_dir) and os.path.isdir(repo_dir), f"Repo dir {repo_dir} does not exist"
     object_aware_model_path = os.path.join(repo_dir, 'ObjectAwareModel.pt')
-    torch.hub.download_url_to_file(_url, object_aware_model_path)
+    if not os.path.exists(object_aware_model_path):
+        torch.hub.download_url_to_file(_url, object_aware_model_path)
 
     # Set up model
     ObjAwareModel = ObjectAwareModel(object_aware_model_path)
@@ -54,8 +55,10 @@ def _get_mobilesamv2(encoder_type):
     assert os.path.exists(repo_dir) and os.path.isdir(repo_dir), f"Repo dir {repo_dir} does not exist"
     encoder_path = os.path.join(repo_dir, f'{encoder_type}.pt')
     decoder_path = os.path.join(repo_dir, 'Prompt_guided_Mask_Decoder.pt')
-    torch.hub.download_url_to_file(_encoder_url, encoder_path)
-    torch.hub.download_url_to_file(_decoder_url, decoder_path)
+    if not os.path.exists(encoder_path):
+        torch.hub.download_url_to_file(_encoder_url, encoder_path)
+    if not os.path.exists(decoder_path):
+        torch.hub.download_url_to_file(_decoder_url, decoder_path)
 
     # Set up model
     PromptGuidedDecoder = sam_model_registry['PromptGuidedDecoder'](decoder_path)
