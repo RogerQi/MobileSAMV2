@@ -5,13 +5,10 @@
 import io
 import os
 
-import onnx
 import torch
 import torch.nn as nn
-from onnxsim import simplify as simplify_func
 
 __all__ = ["export_onnx"]
-
 
 def export_onnx(model: nn.Module, export_path: str, sample_inputs: any, simplify=True, opset=11) -> None:
     """Export a model to a platform-specific onnx format.
@@ -23,6 +20,8 @@ def export_onnx(model: nn.Module, export_path: str, sample_inputs: any, simplify
         simplify: a flag to turn on onnx-simplifier
         opset: int
     """
+    import onnx
+    from onnxsim import simplify as simplify_func
     model.eval()
 
     buffer = io.BytesIO()
