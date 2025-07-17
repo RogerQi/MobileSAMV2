@@ -530,7 +530,7 @@ def torch_safe_load(weight):
                        f"run a command with an official YOLOv8 model, i.e. 'yolo predict model=yolov8n.pt'")
         check_requirements(e.name)  # install missing module
 
-        return torch.load(file, map_location='cpu'), file  # load
+        return torch.load(file, map_location='cpu', weights_only=False), file  # load
 
 
 def attempt_load_weights(weights, device=None, inplace=True, fuse=False):
